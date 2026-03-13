@@ -52,7 +52,7 @@ export class Categorias {
         "--- Dados da Categoria ---",
         `ID da Categoria: ${this.IdCategoria}`,
         `Descrição da Categoria: ${this.DescricaoCategoria}`,
-      ].join("\n");
+      ].join("");
     }
 
     inserir(): Categorias {
