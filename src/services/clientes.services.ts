@@ -12,11 +12,11 @@ export class ClientesService {
   //   return await this._repository.selectById(idCategoria);
   // }
 
-  async criar(nomeCliente: string, email: string) {
+  async criarClientes(nomeCliente: string, email: string) {
     const cliente = Clientes.criarCliente(nomeCliente, email);
     return await this._repository.create(cliente);
   }
-  async editar(nomeCliente: string, email: string, idCliente: number) {
+  async editarClientes(nomeCliente: string, email: string, idCliente: number) {
     const cliente = Clientes.editarCliente(
       nomeCliente,
       email,
@@ -24,7 +24,7 @@ export class ClientesService {
     );
     return await this._repository.update(idCliente, cliente);
   }
-  async excluir(idCliente: number) {
+  async excluirClientes(idCliente: number) {
     return await this._repository.delete(idCliente);
   }
     /**

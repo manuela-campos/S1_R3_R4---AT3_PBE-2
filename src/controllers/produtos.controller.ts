@@ -86,7 +86,7 @@ export class ProdutosController{
       
       // Retorna para o Insomnia
       res.status(200).json({
-        message: "Lista de categorias formatada",
+        message: "Lista de produtos formatada",
         quantidade: produtosFormatadas.length,
         dados: produtosFormatadas
       });
@@ -118,13 +118,13 @@ export class ProdutosController{
       // Se não encontrou
       if (!produtoFormatada) {
         return res.status(404).json({ 
-          message: 'Categoria não encontrada' 
+          message: 'Produto não encontrado' 
         });
       }
       
       // Retorna para o Insomnia
       res.status(200).json({
-        message: "Categoria encontrada",
+        message: "Produto encontrado",
         dados: produtoFormatada
       });
       

@@ -12,11 +12,11 @@ export class VendedoresService {
   //   return await this._repository.selectById(idVendedor);
   // }
 
-  async criar(nomeVendedor: string, cargo: string) {
+  async criarVendedores(nomeVendedor: string, cargo: string) {
     const vendedor = Vendedores.criarVendedor(nomeVendedor, cargo);
     return await this._repository.create(vendedor);
   }
-  async editar(nomeVendedor: string, cargo: string, idVendedor: number) {
+  async editarVendedores(nomeVendedor: string, cargo: string, idVendedor: number) {
     const vendedor = Vendedores.editarVendedor(
       nomeVendedor,
       cargo,
@@ -24,7 +24,7 @@ export class VendedoresService {
     );
     return await this._repository.update(idVendedor, vendedor);
   }
-  async excluir(idVendedor: number) {
+  async excluirVendedores(idVendedor: number) {
     return await this._repository.delete(idVendedor);
   }
     /**
