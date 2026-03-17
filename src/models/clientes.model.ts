@@ -1,7 +1,8 @@
 import { RowDataPacket } from "mysql2";
 import { Produtos } from "./produtos.model";
+import { Pedidos } from "./pedidos.model";
 
-export class Clientes {
+export class Clientes extends Pedidos {
   private _idCliente?: number;
   private _nomeCliente: string;
   private _email: string;
@@ -10,6 +11,7 @@ export class Clientes {
     this._idCliente = idCliente;
     this._nomeCliente = nomeCliente;
     this._email = email;
+    super(this._idPedido)
   }
 
   // GETTERS
@@ -59,6 +61,7 @@ export class Clientes {
       return [
         "--- Dados do(a) Cliente ---",
         `ID do Cliente: ${this.IdCliente}`,
+        `ID do Pedido: ${this.IdPedido}`,
         `Nome do Cliente: ${this.NomeCliente}`,
         `Email para Contato: ${this.Email}`
       ].join("");
