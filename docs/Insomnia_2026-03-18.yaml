@@ -1,0 +1,299 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: S1_R3_R4---AT3_PBE-2
+meta:
+  id: wrk_a40396eff57d433593c11a8c5541f479
+  created: 1773324475056
+  modified: 1773324475056
+  description: ""
+collection:
+  - name: categorias
+    meta:
+      id: fld_1e7f139349ba4b48a3ab54591fc23c73
+      created: 1773324487383
+      modified: 1773324487383
+      sortKey: -1773324487383
+      description: ""
+    children:
+      - url: localhost:8081/categorias
+        name: consultar todos
+        meta:
+          id: req_9d28e66ae9314c4ea818df6e38a84172
+          created: 1773324952320
+          modified: 1773399800442
+          isPrivate: false
+          description: ""
+          sortKey: -1773324952320
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/categorias/1
+        name: consultar por id
+        meta:
+          id: req_59a92900ef504fda8f5866b3c4d8bc12
+          created: 1773324965098
+          modified: 1773399825085
+          isPrivate: false
+          description: ""
+          sortKey: -1773324965098
+        method: GET
+        parameters:
+          - name: idCategoria
+            value: "1"
+            description: ""
+            disabled: false
+        headers:
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/categorias
+        name: inserir categoria
+        meta:
+          id: req_1ac1790f48314aef805e718847a5b849
+          created: 1773324981254
+          modified: 1773399439291
+          isPrivate: false
+          description: ""
+          sortKey: -1773324981254
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"descricaoCategoria": "software"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/categorias
+        name: editar categoria
+        meta:
+          id: req_c27c04fd37db4d778ea526dddb81d67f
+          created: 1773325003241
+          modified: 1773399945037
+          isPrivate: false
+          description: ""
+          sortKey: -1773325003241
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"descricaoCategoria": "hardware 1.0"
+            }
+        parameters:
+          - name: idCategoria
+            value: "2"
+            description: ""
+            disabled: false
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/categorias
+        name: deletar categoria
+        meta:
+          id: req_f993437bb9cd4ffb8274f1c9f36bd687
+          created: 1773325036229
+          modified: 1773399996791
+          isPrivate: false
+          description: ""
+          sortKey: -1773325036229
+        method: DELETE
+        parameters:
+          - name: idCategoria
+            value: ""
+            description: ""
+            disabled: false
+        headers:
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: produtos
+    meta:
+      id: fld_39209019fcc642c3ac699cfaa168e148
+      created: 1773400032001
+      modified: 1773400032001
+      sortKey: -1773400032001
+      description: ""
+    children:
+      - url: localhost:8081/produtos
+        name: consultar todos os produtos
+        meta:
+          id: req_b6e9e66e4cfb47f0988405aa32b327ad
+          created: 1773400035284
+          modified: 1773400155550
+          isPrivate: false
+          description: ""
+          sortKey: -1773400035284
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: ""
+        name: consultar por id
+        meta:
+          id: req_9788a4beca134ded8407643529de0e6f
+          created: 1773400051915
+          modified: 1773400067746
+          isPrivate: false
+          description: ""
+          sortKey: -1773400051915
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: ""
+        name: inserir produto
+        meta:
+          id: req_e69ea2790c8a4c91b172e80694a290d2
+          created: 1773400068973
+          modified: 1773400086035
+          isPrivate: false
+          description: ""
+          sortKey: -1773400068973
+        method: POST
+        headers:
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: ""
+        name: editar produto
+        meta:
+          id: req_4d0127b90f1a4612a3fa4e34f74ad2ac
+          created: 1773400087311
+          modified: 1773400105484
+          isPrivate: false
+          description: ""
+          sortKey: -1773400087311
+        method: PATCH
+        headers:
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: ""
+        name: excluir produto
+        meta:
+          id: req_aac48555bb2740e7942a8ef0c719629b
+          created: 1773400108668
+          modified: 1773400126847
+          isPrivate: false
+          description: ""
+          sortKey: -1773400108668
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_76bac00308e30a98748e198df6ebe6527579da85
+    created: 1773324475100
+    modified: 1773324475100
+environments:
+  name: Base Environment
+  meta:
+    id: env_76bac00308e30a98748e198df6ebe6527579da85
+    created: 1773324475093
+    modified: 1773324475093
+    isPrivate: false
