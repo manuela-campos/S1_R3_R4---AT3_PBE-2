@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { CategoriaService } from "../services/categoria.services"; 
+import { VendedoresService } from "../services/vendedores.services"; 
 
-export class CategoriaController{
-    constructor (private _service = new CategoriaService()){}
+export class VendedoresController{
+    constructor (private _service = new VendedoresService()){}
 
     // selecionarTodos = async (req: Request, res:Response) => {
     //     try {
@@ -34,8 +34,8 @@ export class CategoriaController{
 
     criar = async (req: Request, res:Response) => {
         try {
-            const {descricaoCategoria} = req.body;
-            const novo = await this._service.criar(descricaoCategoria);
+            const {nomeVendedor, cargo} = req.body;
+            const novo = await this._service.criarVendedores(nomeVendedor, cargo);
             res.status(201).json({novo})
         } catch (error: unknown) {
             console.error(error);
@@ -48,9 +48,9 @@ export class CategoriaController{
 
     editar = async (req: Request, res:Response) => {
         try {
-            const {descricaoCategoria} = req.body;
-            const idCategoria = Number(req.query.idCategoria)
-            const alterado = await this._service.editar(descricaoCategoria, idCategoria);
+            const {nomeVendedor, cargo} = req.body;
+            const idVendedor = Number(req.query.idVendedor)
+            const alterado = await this._service.editarVendedores(nomeVendedor,cargo, idVendedor);
             res.status(200).json({alterado})
         } catch (error: unknown) {
             console.error(error);
@@ -63,9 +63,8 @@ export class CategoriaController{
 
     excluir = async (req: Request, res:Response) => {
         try {
-    //         // const {idCategoria} = req.params;
-            const idCategoria = Number(req.query.idAluno)
-            const exclusao = await this._service.excluir(idCategoria);
+            const idVendedor = Number(req.query.idVendedor)
+            const exclusao = await this._service.excluirVendedores(idVendedor);
             res.status(200).json({exclusao})
         } catch (error: unknown) {
             console.error(error);
@@ -81,13 +80,13 @@ export class CategoriaController{
   selecionarTodosFormatado = async (req: Request, res: Response) => {
     try {
       // Chama o novo método do Service
-      const categoriasFormatadas = await this._service.selecionarTodosFormatado();
+      const vendedoresFormatadas = await this._service.selecionarTodosFormatado();
       
       // Retorna para o Insomnia
       res.status(200).json({
-        message: "Lista de categorias formatada",
-        quantidade: categoriasFormatadas.length,
-        dados: categoriasFormatadas
+        message: "Lista de vendedores formatada",
+        quantidade: vendedoresFormatadas.length,
+        dados: vendedoresFormatadas
       });
       
     } catch (error: unknown) {
@@ -109,22 +108,22 @@ export class CategoriaController{
    */
   selecionarIdFormatado = async (req: Request, res: Response) => {
     try {
-      const idCategoria = Number(req.params.idCategoria);
+      const idVendedores = Number(req.params.idVendedor);
       
       // Chama o novo método do Service
-      const categoriaFormatada = await this._service.selecionarIdFormatado(idCategoria);
+      const vendedoresFormatada = await this._service.selecionarIdFormatado(idVendedores);
       
       // Se não encontrou
-      if (!categoriaFormatada) {
+      if (!vendedoresFormatada) {
         return res.status(404).json({ 
-          message: 'Categoria não encontrada' 
+          message: 'Vendedor não encontrado' 
         });
       }
       
       // Retorna para o Insomnia
       res.status(200).json({
-        message: "Categoria encontrada",
-        dados: categoriaFormatada
+        message: "Vendedor encontrado",
+        dados: vendedoresFormatada
       });
       
     } catch (error: unknown) {

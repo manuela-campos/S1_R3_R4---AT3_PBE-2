@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
-import { CategoriaService } from "../services/categoria.services"; 
+import { ProdutosRepository } from "../repository/produtos.repository"; 
+import { ProdutosService } from "../services/produtos.services";
 
-export class CategoriaController{
-    constructor (private _service = new CategoriaService()){}
+export class ProdutosController{
+    constructor (private _service = new ProdutosService()){}
 
     // selecionarTodos = async (req: Request, res:Response) => {
     //     try {
@@ -34,8 +35,8 @@ export class CategoriaController{
 
     criar = async (req: Request, res:Response) => {
         try {
-            const {descricaoCategoria} = req.body;
-            const novo = await this._service.criar(descricaoCategoria);
+            const {nomeProduto, valorProduto, vinculoImagem, idCategoria} = req.body;
+            const novo = await this._service.criarProd(nomeProduto, valorProduto, vinculoImagem, idCategoria);
             res.status(201).json({novo})
         } catch (error: unknown) {
             console.error(error);
@@ -48,9 +49,9 @@ export class CategoriaController{
 
     editar = async (req: Request, res:Response) => {
         try {
-            const {descricaoCategoria} = req.body;
-            const idCategoria = Number(req.query.idCategoria)
-            const alterado = await this._service.editar(descricaoCategoria, idCategoria);
+            const {nomeProduto, valorProduto, vinculoImagem, idCategoria} = req.body;
+            const idProduto = Number(req.query.idProduto)
+            const alterado = await this._service.editarProd(nomeProduto, valorProduto, vinculoImagem,idCategoria, idProduto);
             res.status(200).json({alterado})
         } catch (error: unknown) {
             console.error(error);
@@ -64,8 +65,8 @@ export class CategoriaController{
     excluir = async (req: Request, res:Response) => {
         try {
     //         // const {idCategoria} = req.params;
-            const idCategoria = Number(req.query.idAluno)
-            const exclusao = await this._service.excluir(idCategoria);
+            const idProduto = Number(req.query.idProduto)
+            const exclusao = await this._service.excluir(idProduto);
             res.status(200).json({exclusao})
         } catch (error: unknown) {
             console.error(error);
@@ -81,13 +82,13 @@ export class CategoriaController{
   selecionarTodosFormatado = async (req: Request, res: Response) => {
     try {
       // Chama o novo método do Service
-      const categoriasFormatadas = await this._service.selecionarTodosFormatado();
+      const produtosFormatadas = await this._service.selecionarTodosFormatado();
       
       // Retorna para o Insomnia
       res.status(200).json({
-        message: "Lista de categorias formatada",
-        quantidade: categoriasFormatadas.length,
-        dados: categoriasFormatadas
+        message: "Lista de produtos formatada",
+        quantidade: produtosFormatadas.length,
+        dados: produtosFormatadas
       });
       
     } catch (error: unknown) {
@@ -109,22 +110,22 @@ export class CategoriaController{
    */
   selecionarIdFormatado = async (req: Request, res: Response) => {
     try {
-      const idCategoria = Number(req.params.idCategoria);
+      const idProduto = Number(req.params.idProduto);
       
       // Chama o novo método do Service
-      const categoriaFormatada = await this._service.selecionarIdFormatado(idCategoria);
+      const produtoFormatada = await this._service.selecionarIdFormatado(idProduto);
       
       // Se não encontrou
-      if (!categoriaFormatada) {
+      if (!produtoFormatada) {
         return res.status(404).json({ 
-          message: 'Categoria não encontrada' 
+          message: 'Produto não encontrado' 
         });
       }
       
       // Retorna para o Insomnia
       res.status(200).json({
-        message: "Categoria encontrada",
-        dados: categoriaFormatada
+        message: "Produto encontrado",
+        dados: produtoFormatada
       });
       
     } catch (error: unknown) {

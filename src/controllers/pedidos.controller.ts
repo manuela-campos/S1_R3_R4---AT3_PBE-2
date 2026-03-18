@@ -1,41 +1,13 @@
 import { Request, Response } from "express";
-import { CategoriaService } from "../services/categoria.services"; 
+import { PedidosService } from "../services/pedido.services";
 
-export class CategoriaController{
-    constructor (private _service = new CategoriaService()){}
-
-    // selecionarTodos = async (req: Request, res:Response) => {
-    //     try {
-    //         const categorias = await this._service.selecionarTodos();
-    //         res.status(200).json({categorias})
-    //     } catch (error: unknown) {
-    //         console.error(error);
-    //         if(error instanceof Error){
-    //             return res.status(500).json({message: 'Ocorreu um erro no servidor', errorMessage: error.message});
-    //         }
-    //         res.status(500).json({message: 'Ocorreu um erro no servidor', errorMessage: 'Erro desconhecido'});
-    //     }
-    // }
-    // selecionarId = async (req: Request, res:Response) => {
-    //     try {
-    //         const idCategoria = Number(req.params.idCategoria);
-    //         console.log(idCategoria);
-    //         const consulta = await this._service.selecionarId(idCategoria);
-    //         console.log(consulta)
-    //         res.status(200).json({consulta})
-    //     } catch (error: unknown) {
-    //         console.error(error);
-    //         if(error instanceof Error){
-    //             return res.status(500).json({message: 'Ocorreu um erro no servidor', errorMessage: error.message});
-    //         }
-    //         res.status(500).json({message: 'Ocorreu um erro no servidor', errorMessage: 'Erro desconhecido'});
-    //     }
-    // }
+export class PedidosController{
+    constructor (private _service = new PedidosService()){}
 
     criar = async (req: Request, res:Response) => {
         try {
-            const {descricaoCategoria} = req.body;
-            const novo = await this._service.criar(descricaoCategoria);
+            const {idCliente, idVendedor, valorTotal, statusPedido} = req.body;
+            const novo = await this._service.criarPedidos(idCliente, idVendedor, valorTotal, statusPedido);
             res.status(201).json({novo})
         } catch (error: unknown) {
             console.error(error);
@@ -48,9 +20,9 @@ export class CategoriaController{
 
     editar = async (req: Request, res:Response) => {
         try {
-            const {descricaoCategoria} = req.body;
-            const idCategoria = Number(req.query.idCategoria)
-            const alterado = await this._service.editar(descricaoCategoria, idCategoria);
+            const {idCliente, idVendedor, valorTotal, statusPedido} = req.body;
+            const idPedido = Number(req.query.idPedido)
+            const alterado = await this._service.editarPedidos(idCliente, idVendedor, valorTotal,statusPedido, idPedido);
             res.status(200).json({alterado})
         } catch (error: unknown) {
             console.error(error);
@@ -63,9 +35,8 @@ export class CategoriaController{
 
     excluir = async (req: Request, res:Response) => {
         try {
-    //         // const {idCategoria} = req.params;
-            const idCategoria = Number(req.query.idAluno)
-            const exclusao = await this._service.excluir(idCategoria);
+            const idPedido = Number(req.query.idPedido)
+            const exclusao = await this._service.excluirPedidos(idPedido);
             res.status(200).json({exclusao})
         } catch (error: unknown) {
             console.error(error);
@@ -76,18 +47,18 @@ export class CategoriaController{
         }
     }
       /**
-   * Retorna todas as categorias usando o método mostrarDados() do Model
+   * Retorna todas os pedidos usando o método mostrarDados() do Model
    */
   selecionarTodosFormatado = async (req: Request, res: Response) => {
     try {
       // Chama o novo método do Service
-      const categoriasFormatadas = await this._service.selecionarTodosFormatado();
+      const pedidosFormatados = await this._service.selecionarTodosFormatado();
       
       // Retorna para o Insomnia
       res.status(200).json({
-        message: "Lista de categorias formatada",
-        quantidade: categoriasFormatadas.length,
-        dados: categoriasFormatadas
+        message: "Lista de pedidos formatada",
+        quantidade: pedidosFormatados.length,
+        dados: pedidosFormatados
       });
       
     } catch (error: unknown) {
@@ -109,22 +80,22 @@ export class CategoriaController{
    */
   selecionarIdFormatado = async (req: Request, res: Response) => {
     try {
-      const idCategoria = Number(req.params.idCategoria);
+      const idPedidos = Number(req.params.idPedidos);
       
       // Chama o novo método do Service
-      const categoriaFormatada = await this._service.selecionarIdFormatado(idCategoria);
+      const pedidosFormatados = await this._service.selecionarIdFormatado(idPedidos);
       
       // Se não encontrou
-      if (!categoriaFormatada) {
+      if (!pedidosFormatados) {
         return res.status(404).json({ 
-          message: 'Categoria não encontrada' 
+          message: 'Pedidos não encontrados' 
         });
       }
       
       // Retorna para o Insomnia
       res.status(200).json({
-        message: "Categoria encontrada",
-        dados: categoriaFormatada
+        message: "Pedidos encontrados",
+        dados: pedidosFormatados
       });
       
     } catch (error: unknown) {
