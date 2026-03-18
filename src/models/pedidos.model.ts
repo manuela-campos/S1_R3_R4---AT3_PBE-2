@@ -5,14 +5,14 @@ export class Pedidos {
   private _idPedido?: number;
   private _idCliente: number;
   private _idVendedor: number;
-  private _valorTotal: number;
+  private _valorTotal?: number;
   private _statusPedido: string;
 
   constructor(
     idCliente: number,
     idVendedor: number,
-    valorTotal: number,
     statusPedido: string,
+    valorTotal?: number,
     idPedido?: number,
   ) {
     this._idPedido = idPedido;
@@ -35,7 +35,7 @@ export class Pedidos {
     return this._idVendedor;
   }
 
-  get ValorTotal(): number {
+  get ValorTotal(): number | undefined {
     return this._valorTotal;
   }
 
@@ -54,6 +54,13 @@ export class Pedidos {
     this._statusPedido = values;
   }
 
+  // set ValorTotal(valor: number) {
+  //   if (Number.isNaN(valor) || valor < 0 || valor > 10) {
+  //     throw new RangeError("Média final deve estar entre 0 e 10.");
+  //   }
+  //   this._valorTotal = Math.round(valor * ) / 100;
+  // }
+
   public static criarPedidos(
     idCliente: number,
     idVendedor: number,
@@ -61,7 +68,7 @@ export class Pedidos {
     statusPedido: string,
     // dataCad: Date,
   ): Pedidos {
-    return new Pedidos(idCliente, idVendedor, valorTotal, statusPedido);
+    return new Pedidos(idCliente, idVendedor, statusPedido, valorTotal);
   }
 
   // update
@@ -72,7 +79,7 @@ export class Pedidos {
     statusPedido: string,
     idPedido:number
   ) {
-    return new Pedidos( idCliente, idVendedor, valorTotal, statusPedido, idPedido);
+    return new Pedidos( idCliente, idVendedor, statusPedido, valorTotal, idPedido);
   }
 
   mostrarDados(): string {

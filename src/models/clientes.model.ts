@@ -7,11 +7,17 @@ export class Clientes extends Pedidos {
   private _nomeCliente: string;
   private _email: string;
 
-  constructor(nomeCliente: string, email: string, idCliente?: number) {
+  constructor(
+    nomeCliente: string,
+    email: string,
+    idPedido: number,
+    idCliente?: number,
+  ) {
+    super(idPedido);
+
     this._idCliente = idCliente;
     this._nomeCliente = nomeCliente;
     this._email = email;
-    super(this._idPedido)
   }
 
   // GETTERS
@@ -23,7 +29,7 @@ export class Clientes extends Pedidos {
     return this._nomeCliente;
   }
 
-  get Email(): string{
+  get Email(): string {
     return this._email;
   }
 
@@ -42,10 +48,11 @@ export class Clientes extends Pedidos {
 
   public static criarCliente(
     nomeCliente: string,
-    email: string
+    email: string,
+    idPedido:number
     // dataCad: Date,
   ): Clientes {
-    return new Clientes(nomeCliente, email);
+    return new Clientes(nomeCliente, email, idPedido);
   }
 
   // update
@@ -57,21 +64,21 @@ export class Clientes extends Pedidos {
     return new Clientes(nomeCliente, email, idCliente);
   }
 
-    mostrarDados(): string {
-      return [
-        "--- Dados do(a) Cliente ---",
-        `ID do Cliente: ${this.IdCliente}`,
-        `ID do Pedido: ${this.IdPedido}`,
-        `Nome do Cliente: ${this.NomeCliente}`,
-        `Email para Contato: ${this.Email}`
-      ].join("");
-    }
+  mostrarDados(): string {
+    return [
+      "--- Dados do(a) Cliente ---",
+      `ID do Cliente: ${this.IdCliente}`,
+      `ID do Pedido: ${this.IdPedido}`,
+      `Nome do Cliente: ${this.NomeCliente}`,
+      `Email para Contato: ${this.Email}`,
+    ].join("");
+  }
 
-    inserir(): Clientes {
-      return this;
-    }
+  inserirClientes(): Clientes {
+    return this;
+  }
 
-    alterar(): Clientes {
-      return this;
-    }
+  alterarClientes(): Clientes {
+    return this;
+  }
 }

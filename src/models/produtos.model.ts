@@ -1,11 +1,12 @@
 import { RowDataPacket } from "mysql2";
 import { Categorias } from "./categorias.model";
 
-export class Produtos extends Categorias {
+export class Produtos {
   private _idProduto?: number;
   private _nomeProduto: string = "";
   private _valorProduto: number;
   private _vinculoImagem: string;
+  private _idCategoria: number;
 
   constructor(
     nomeProduto: string,
@@ -14,12 +15,12 @@ export class Produtos extends Categorias {
     idCategoria: number,
     idProduto?: number
   ) {
-    super(idCategoria);
 
     this._idProduto = idProduto;
     this._nomeProduto = nomeProduto;
     this._valorProduto = valorProduto;
     this._vinculoImagem = vinculoImagem;
+    this._idCategoria = idCategoria;
   }
 
 
@@ -79,7 +80,7 @@ export class Produtos extends Categorias {
         `Nome do produto: ${this.NomeProduto}`,
         `Valor do Produto: ${this.ValorProduto}`,
         `Vinculo da Imagem: ${this.VinculoImagem}`,
-        `ID da Categoria: ${this.IdCategoria}`
+        // `Descrição da Categoria: ${this.idCategoria}`
       ].join("");
     }
 

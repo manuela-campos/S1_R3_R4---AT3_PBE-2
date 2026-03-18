@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { ProdutosController } from "../controllers/produtos.controller";
-
+import {} from "../middlewares/produtos.middlewares"
 
 const produtosController = new ProdutosController();
 const produtoRoutes = Router();

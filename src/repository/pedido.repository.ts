@@ -3,9 +3,9 @@ import { Pedidos } from "../models/pedidos.model";
 import { ResultSetHeader, RowDataPacket } from "mysql2";
 
 export class PedidosRepository {
-  async findAll(): Promise<[]> {
+  async findAll(): Promise<RowDataPacket[]> {
     //ESPERO QUE TENHO RETORNO DESSE TIPO
-    const [rows] = await db.execute<[]>("SELECT * FROM pedidos;");
+    const [rows] = await db.execute<RowDataPacket[]>("SELECT * FROM pedidos;");
     return rows;
   }
 
@@ -17,11 +17,11 @@ export class PedidosRepository {
   }
 
   // Omit =>  omite os campos discriminados, ou seja, só usa a interface mais sem o campo id porque ele é auto increment
-  async create(dados: Omit<Pedidos, "idPedido">): Promise<ResultSetHeader> {
+  async create(dados: Omit<Pedidos, "idPedido" | "valorTotal">): Promise<ResultSetHeader> {
     const sql =
       "INSERT INTO pedidos (valorTotal, statusPedido) VALUES (?,?);";
     const values = [
-      dados.ValorTotal,
+      // dados.ValorTotal,
       dados.StatusPedido
     ];
     const [rows] = await db.execute<ResultSetHeader>(sql, values);
@@ -31,12 +31,12 @@ export class PedidosRepository {
 //   // Aqui vai receber o id do pedido que quer atualizar e logo em seguida os campos que quer atualizar
   async update(
     idVendedor: number,
-    dados: Omit<Pedidos, "idPedido">,
+    dados: Omit<Pedidos, "idPedido" | "valorTotal">,
   ): Promise<ResultSetHeader> {
     const sql =
       "UPDATE pedidos SET valorTotal = ?, statusPedido =? WHERE idPedido=?;";
     const values = [
-      dados.ValorTotal,
+      // dados.ValorTotal,
       dados.StatusPedido,
       idVendedor
     ];
