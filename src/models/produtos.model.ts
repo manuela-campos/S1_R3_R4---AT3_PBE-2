@@ -37,9 +37,11 @@ export class Produtos {
     return this._valorProduto;
 }
 
-  get VinculoImagem(): string{
+  get VinculoImagem(): string {
     return this._vinculoImagem;
 }
+
+
   // SETTERS
   set nomeProduto(valor: string) {
     const values = (valor ?? "").trim();
@@ -56,7 +58,7 @@ export class Produtos {
   public static criarProduto(
     nomeProduto: string,
     valorProduto: number,
-    vinculoImagem: string, 
+    vinculoImagem: string ,
     idCategoria: number
   ): Produtos {
     return new Produtos(nomeProduto, valorProduto, vinculoImagem, idCategoria);

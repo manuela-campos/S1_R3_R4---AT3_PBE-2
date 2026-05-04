@@ -2,7 +2,7 @@ import { RowDataPacket } from "mysql2";
 import { Produtos } from "./produtos.model";
 import { Pedidos } from "./pedidos.model";
 
-export class Clientes extends Pedidos {
+export class Clientes {
   private _idCliente?: number;
   private _nomeCliente: string;
   private _email: string;
@@ -10,10 +10,9 @@ export class Clientes extends Pedidos {
   constructor(
     nomeCliente: string,
     email: string,
-    idPedido: number,
+    // idPedido: number,
     idCliente?: number,
   ) {
-    super(idPedido);
 
     this._idCliente = idCliente;
     this._nomeCliente = nomeCliente;
@@ -49,10 +48,10 @@ export class Clientes extends Pedidos {
   public static criarCliente(
     nomeCliente: string,
     email: string,
-    idPedido:number
+    // idPedido:number
     // dataCad: Date,
   ): Clientes {
-    return new Clientes(nomeCliente, email, idPedido);
+    return new Clientes(nomeCliente, email);
   }
 
   // update
@@ -67,10 +66,9 @@ export class Clientes extends Pedidos {
   mostrarDados(): string {
     return [
       "--- Dados do(a) Cliente ---",
-      `ID do Cliente: ${this.IdCliente}`,
-      `ID do Pedido: ${this.IdPedido}`,
-      `Nome do Cliente: ${this.NomeCliente}`,
-      `Email para Contato: ${this.Email}`,
+      ` ID do Cliente: ${this.IdCliente}`,
+      ` Nome do Cliente: ${this.NomeCliente}`,
+      ` Email para Contato: ${this.Email}`,
     ].join("");
   }
 

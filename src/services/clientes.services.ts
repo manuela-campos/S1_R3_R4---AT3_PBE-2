@@ -1,5 +1,6 @@
 import { ClientesRepository } from "../repository/clientes.repository";
 import { Clientes } from "../models/clientes.model";
+import { Pedidos } from "../models/pedidos.model";
 import { log } from "console";
 
 export class ClientesService {
