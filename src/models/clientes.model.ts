@@ -63,13 +63,8 @@ export class Clientes {
     return new Clientes(nomeCliente, email, idCliente);
   }
 
-  mostrarDados(): string {
-    return [
-      "--- Dados do(a) Cliente ---",
-      ` ID do Cliente: ${this.IdCliente}`,
-      ` Nome do Cliente: ${this.NomeCliente}`,
-      ` Email para Contato: ${this.Email}`,
-    ].join("");
+  mostrarDados(): Clientes {
+    return this;
   }
 
   inserirClientes(): Clientes {

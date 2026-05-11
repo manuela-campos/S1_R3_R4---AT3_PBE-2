@@ -24,7 +24,7 @@ export class ClientesService {
     /**
    * Busca todos os clientes e retorna formatadas com mostrarDados()
    */
-  async selecionarTodosFormatado(): Promise<string[]> {
+  async selecionarTodosFormatado(): Promise<Clientes[]> {
     // Busca no banco que vem como array de objetos simples
     const clientesDoBanco = await this._repository.findAll();
     
@@ -41,7 +41,7 @@ export class ClientesService {
   /**
    * Busca um cliente por ID e retorna formatada com mostrarDados()
    */
-  async selecionarIdFormatado(idCliente: number): Promise<string | null> {
+  async selecionarIdFormatado(idCliente: number): Promise<Clientes | null> {
     // Faz uma busca no banco
     const rows = await this._repository.selectById(idCliente);
     
